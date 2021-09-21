@@ -2,13 +2,13 @@ const mongoose = require('mongoose')
 const { Schema, model} = mongoose
 
 const autoSchema = new Schema({
-    year: {type: Number, require: true},
-    make: {tpye: String, require: true},
-    model: {tpye: String, require: true},
+    year: {type: Number, required: true},
+    make: {type: String, required: true},
+    model: {type: String, required: true},
     mileage: {type: Number, reqired: true},
     price: {type: Number},
-    trim: {tpye: String},
-    body: {tpye: String},
+    trim: {type: String},
+    body: {type: String},
     cylinders: {type: Number},
     doorCount: {type: Number},
     autoTrans: {type: Boolean}

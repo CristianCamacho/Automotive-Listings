@@ -3,11 +3,12 @@ require('dotenv').config()
 const express = require('express')
 const app = express()
 const PORT = process.env.PORT
+const mongoURI = process.env.MONGOURI
+
+const alController = require('./controllers/autoListing')
 
 const mongoose = require('mongoose')
 const methodOverride = require("method-override")
-
-const mongoURI = "mongodb://127.0.0.1:27017/autolistings"
 const db = mongoose.connection
 
 mongoose.connect(mongoURI, {
@@ -23,6 +24,8 @@ db.on('disconnected', () => { console.log('mongo disconnected') })
 
 app.use(express.urlencoded({ extended: true }))
 app.use(methodOverride('_method'))
+
+app.use('/al', alController)
 
 app.listen(PORT, () => {
     console.log(`Listening on PORT:${PORT}`)
