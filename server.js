@@ -10,7 +10,6 @@ const alController = require('./controllers/autoListing')
 const mongoose = require('mongoose')
 const methodOverride = require("method-override")
 const db = mongoose.connection
-
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true

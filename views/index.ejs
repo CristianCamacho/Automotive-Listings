@@ -1,3 +1,9 @@
 <%- include('../views/partials/header.ejs') %>
 <h1>HOMEPAGE</h1>
+<h2>Listings Bellow</h2>
+
+<% for(let i = 0; 0 < listings.length; i++) { %>
+    <p><%= listings[i] %></p>
+<% } %>
+
 <%- include('../views/partials/footer.ejs') %>

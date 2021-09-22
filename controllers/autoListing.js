@@ -4,7 +4,15 @@ const router = express.Router()
 const Auto = require('../models/auto')
 
 router.get('/', (req, res) => {
-    res.render('index.ejs')
+    Auto.find({}, (error, wholeListing) => {
+        if(error) {
+            console.log(error)
+        } else {
+            res.render('index.ejs', {
+                listings: wholeListing
+            })
+        }
+    })
 })
 
 router.get('/new', (req, res) => {
