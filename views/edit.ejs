@@ -1,0 +1,21 @@
+<%- include('../views/partials/header.ejs') %>
+<form action='/al/edit/<%= listing._id %>/?_method=PUT' method="POST">
+    <fieldset>
+        <label for='year'>Year</label>
+        <input type='text' id='year' name='year' value='<%= listing.year %>'>
+    </fieldset>
+    <fieldset>
+        <label for='make'>Make</label>
+        <input type='text' id='make' name='make' value='<%= listing.make %>'>
+    </fieldset>
+    <fieldset>
+        <label for='model'>Model</label>
+        <input type='text' id='model' name='model' value='<%= listing.model %>'>
+    </fieldset>
+    <fieldset>
+        <label for='mileage'>Mileage</label>
+        <input type='text' id='mileage' name='mileage' value='<%= listing.mileage %>'>
+    </fieldset>
+    <button>Submit</button>
+</form>
+<%- include('../views/partials/footer.ejs') %>

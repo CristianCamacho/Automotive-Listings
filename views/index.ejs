@@ -1,9 +1,12 @@
 <%- include('../views/partials/header.ejs') %>
 <h1>HOMEPAGE</h1>
 <h2>Listings Bellow</h2>
-
-<% for(let i = 0; 0 < listings.length; i++) { %>
-    <p><%= listings[i] %></p>
+<div>
+<% for(let i = 0; i < listings.length; i++) { %>
+    <p><%= listings[i].year %></p>
+    <p><%= listings[i].make %></p>
+    <p><%= listings[i].model %></p>
+    <p><%= listings[i].mileage %></p>
 <% } %>
-
+</div>
 <%- include('../views/partials/footer.ejs') %>
