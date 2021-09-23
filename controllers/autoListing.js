@@ -2,49 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const Auto = require('../models/auto')
-
-let testObj = [
-    {
-      id: ("614a6ea80851a0e1423c9c4a"),
-      year: 2002,
-      make: 'Lexus',
-      model: 'IS300',
-      mileage: 200000,
-      v: 0
-    },
-    {
-      id: ("614a6eeb8548cfe70368bfbf"),
-      year: 1989,
-      make: 'Ford',
-      model: 'Mustang',
-      mileage: 150000,
-      v: 0
-    },
-    {
-      id: ("614a6f111f9c30a05b2f0170"),
-      year: 2020,
-      make: 'Nissan',
-      model: 'NV200',
-      mileage: 156000,
-      v: 0
-    },
-    {
-      id: ("614a8692ed20a0e84bc1d891"),
-      year: 2004,
-      make: 'Cadillac ',
-      model: 'CTS-V',
-      mileage: 99000,
-      v: 0
-    },
-    {
-      id: ("614bb75da543ebe5315fa4ed"),
-      year: 2003,
-      make: 'Ford',
-      model: 'Explorer',
-      mileage: 256000,
-      v: 0
-    }
-  ]
+const seedAuto = require('../seed/seed')
 
 router.get('/', (req, res) => {
     Auto.find({}, (error, wholeListing) => {
@@ -56,6 +14,17 @@ router.get('/', (req, res) => {
                 listings: wholeListing
             })
         }
+    })
+})
+
+router.get('/seed', (req, res) => {
+    Auto.create(seedAuto, (error, seeded) => {
+        if(error) {
+            console.log(error)
+        } else {
+            console.log(seeded)
+        }
+        res.redirect('/al')
     })
 })
 

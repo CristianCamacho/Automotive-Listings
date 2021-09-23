@@ -4,8 +4,9 @@
 <div class='listings'>
 <% for(let i = 0; i < listings.length; i++) { %>
 <div class='listing'>
+    <img class='listingsImage' src='<%= listings[i].img %>'>
     <p><%= listings[i].year %></p>
-    <p><%= listings[i].make %></p>
+    <a href='al/edit/<%= listings[i]._id %>'><%= listings[i].make %></a>
     <a href='al/show/<%= listings[i]._id %>'><%= listings[i].model %></a>
     <p><%= listings[i].mileage %></p>
 </div>

@@ -6,6 +6,7 @@ const autoSchema = new Schema({
     make: {type: String, required: true},
     model: {type: String, required: true},
     mileage: {type: Number, reqired: true},
+    img: { type: String },
     price: {type: Number},
     trim: {type: String},
     body: {type: String},
