@@ -1,5 +1,11 @@
 <%- include('../views/partials/header.ejs') %> 
 
-<p><%= auto %></p>
+<p><%= auto.year %></p>
+    <p><%= auto.make %></p>
+    <a href='../../al/show/<%= auto._id %>'><%= auto.model %></a>
+    <p><%= auto.mileage %></p>
+    <form action='../delete/<%= auto._id %>/?_method=DELETE' method='POST'>
+        <button>Delete</button>
+    </form>
 
 <%- include('../views/partials/footer.ejs') %> 

@@ -1,3 +1,14 @@
 body {
     background-color: aliceblue;
+    margin: 20px 50px 0px 50px
+}
+
+.listings {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.listing {
+    height: 200px;
+    width: 200px;
 }

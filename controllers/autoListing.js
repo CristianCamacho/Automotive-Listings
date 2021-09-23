@@ -47,13 +47,13 @@ let testObj = [
   ]
 
 router.get('/', (req, res) => {
-    Auto.find({}, (error, whoelListing) => {
+    Auto.find({}, (error, wholeListing) => {
         if (error) {
             console.log(error)
         } else {
-            console.log(whoelListing)
+            console.log(wholeListing)
             res.render('index.ejs', {
-                listings: testObj
+                listings: wholeListing
             })
         }
     })
@@ -109,6 +109,30 @@ router.put('/edit/:id', (req, res) => {
         }
         res.redirect('/al')
     })
+})
+
+router.get('/show/:id', (req, res) => {
+    Auto.findById(req.params.id, (error, foundAuto) => {
+        if (error) {
+            console.log(error)
+        } else {
+            console.log(foundAuto)
+            res.render('show.ejs', {
+                auto: foundAuto
+            })
+        }
+    })
+})
+
+router.delete('/delete/:id', (req,res) => {
+    Auto.findByIdAndDelete(req.params.id, (error, deleted) => {
+        if(error) {
+            console.log(error) 
+        } else {
+            console.log(deleted)
+        }
+    })
+    res.redirect('/al')
 })
 
 module.exports = router
