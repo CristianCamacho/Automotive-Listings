@@ -32,6 +32,12 @@ nav {
 .listing {
     height: 200px;
     width: 200px;
+    padding: 35px;
+}
+
+body > div > div > div.listingInfo > p {
+    padding: 0px;
+    margin: 0px;
 }
 
 .listingsImage {
