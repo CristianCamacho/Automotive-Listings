@@ -1,10 +1,10 @@
 <%- include('../views/partials/header.ejs') %>
-<h1>HOMEPAGE</h1>
-<h2>Listings Bellow</h2>
 <div class='listings'>
 <% for(let i = 0; i < listings.length; i++) { %>
 <div class='listing'>
-    <img class='listingsImage' src='<%= listings[i].img %>'>
+    <div id='imageDiv'>
+        <img class='listingsImage' src='<%= listings[i].img %>'>
+    </div>
     <p><%= listings[i].year %></p>
     <a href='al/edit/<%= listings[i]._id %>'><%= listings[i].make %></a>
     <a href='al/show/<%= listings[i]._id %>'><%= listings[i].model %></a>
