@@ -1,5 +1,7 @@
 const express = require('express')
 const router = express.Router()
+const request = XMLHttpRequest()
+request.open('GET', 'https://www.fueleconomy.gov/ws/rest/vehicle/menu/year')
 
 const Auto = require('../models/auto')
 const seedAuto = require('../seed/seed')

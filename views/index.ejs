@@ -13,9 +13,14 @@
                 </fieldset>
             </div>
             <div>
-                <fieldset>
-
-                </fieldset>
+                <form>
+                    <fieldset>
+                        <label for='year'>Year</label>
+                        <select id='year' onchange='myFunction()'>
+                            
+                        </select>
+                    </fieldset>
+                </form>
             </div>
         </form>
     </div>
@@ -37,3 +42,10 @@
     </div>
 </div>
 <%- include('../views/partials/footer.ejs') %>
+
+<script>
+    function myFunction() {
+      console.log('yeye')
+    }
+    </script>
+    

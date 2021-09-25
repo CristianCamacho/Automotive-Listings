@@ -63,3 +63,7 @@ body > div > div > div.listingInfo > p {
     margin: 15px;
     padding: 10px;
 }
+
+select {
+    display: inline-block;
+}
