@@ -1,11 +1,36 @@
 console.log('ye')
 
+let yearSelect = document.getElementById('years')
+let modelSelect = document.getElementById('models')
+let makeSelect = document.getElementById('makes')
+
+const clearMakeSelect = () => {
+    while (makeSelect.firstChild) {
+        makeSelect.removeChild(makeSelect.firstChild);
+    }
+    let option = document.createElement('OPTION')
+    option.text = 'Select Make'
+    option.value = 'none'
+    makeSelect.appendChild(option)
+}
+
+const clearModelSelect = () => {
+    while (modelSelect.firstChild) {
+        modelSelect.removeChild(modelSelect.firstChild);
+    }
+    let option = document.createElement('OPTION')
+    option.text = 'Select Model'
+    option.value = 'none'
+    modelSelect.appendChild(option)
+}
+
 fetch('https://www.fueleconomy.gov/ws/rest/vehicle/menu/year').then((res) => {
     return res.text()
 }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((years) => {
+    clearMakeSelect()
+    clearModelSelect()
     let option
-    let yearSelect = document.getElementById('years')
-
+    
     for (let i = 0; i < years.getElementsByTagName('menuItem').length; i++) {
         option = document.createElement('OPTION')
         option.text = years.getElementsByTagName('menuItem')[i].firstChild.innerHTML
@@ -17,14 +42,12 @@ fetch('https://www.fueleconomy.gov/ws/rest/vehicle/menu/year').then((res) => {
 
 const generateMakeOptions = () => {
     let option
-    let makeSelect = document.getElementById('makes')
     console.log(document.getElementById('years').value)
     fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${document.getElementById('years').value}`).then((res) => {
         return res.text()
     }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((makes) => {
-        while (makeSelect.firstChild) {
-            makeSelect.removeChild(makeSelect.firstChild);
-        }
+        clearMakeSelect()
+        clearModelSelect()
         for (let i = 0; i < makes.getElementsByTagName('menuItem').length; i++) {
             option = document.createElement('OPTION')
             option.text = makes.getElementsByTagName('menuItem')[i].firstChild.innerHTML
@@ -37,14 +60,11 @@ const generateMakeOptions = () => {
 
 const generateModelOptions = () => {
     let option
-    let modelSelect = document.getElementById('models')
     console.log(document.getElementById('years').value)
     fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${document.getElementById('years').value}&make=${document.getElementById('makes').value}`).then((res) => {
         return res.text()
     }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((models) => {
-        while (modelSelect.firstChild) {
-            modelSelect.removeChild(modelSelect.firstChild);
-        }
+        clearModelSelect()
         for (let i = 0; i < models.getElementsByTagName('menuItem').length; i++) {
             option = document.createElement('OPTION')
             option.text = models.getElementsByTagName('menuItem')[i].firstChild.innerHTML
