@@ -1,18 +1,39 @@
 <%- include('../views/partials/header.ejs') %>
-<div class='listings'>
-<% for(let i = 0; i < listings.length; i++) { %>
-<div class='listing'>
-    <div id='imageDiv'>
-        <a href='al/show/<%= listings[i]._id %>'><img class='listingsImage' src='<%= listings[i].img %>'></a>
+<div class='listingsPage'>
+    <div class='filter'>
+        <form action='al' method="GET">
+            <div class='price'>
+                <fieldset>
+                    <p>Price</p>
+                    <label for='priceMin'>Minimum</label>
+                    <input type='number' name='priceMin' id='priceMin' value='0'>
+                    <p>to</p> 
+                    <label for='priceMin'>Maximum</label>
+                    <input type='number' name='priceMax' id='priceMax' value='0'>
+                </fieldset>
+            </div>
+            <div>
+                <fieldset>
+
+                </fieldset>
+            </div>
+        </form>
     </div>
-    <div class='listingInfo'>
-        <p>$100000</p>
-        <p><%= listings[i].year %></p>
-        <p><%= listings[i].make %></p>
-        <p><%= listings[i].model %></p>
-        <p>Mileage: <%= listings[i].mileage %></p>
+    <div class='listings'>
+    <% for(let i = 0; i < listings.length; i++) { %>
+    <div class='listing'>
+        <div class='listingInfo'>
+            <p><%= listings[i].year %> <%= listings[i].make %> <%= listings[i].model %></p>
+        </div>
+        <div id='imageDiv'>
+            <a href='al/show/<%= listings[i]._id %>'><img class='listingsImage' src='<%= listings[i].img %>'></a>
+        </div>
+        <div class='listingInfo'>
+            <p>Price: $<%= listings[i].price %></p>
+            <p>Mileage: <%= listings[i].mileage %> mi</p>
+        </div>
     </div>
-</div>
-<% } %>
+    <% } %>
+    </div>
 </div>
 <%- include('../views/partials/footer.ejs') %>
