@@ -34,14 +34,14 @@ router.get('/new', (req, res) => {
 
 router.post('/new', (req, res) => {
     console.log(req.body)
-    // Auto.create(req.body, (error, newAuto) => {
-    //     if (error) {
-    //         console.log(error)
-    //     } else {
-    //         console.log(newAuto)
-    //     }
-    //     res.redirect('/al')
-    // })
+    Auto.create(req.body, (error, newAuto) => {
+        if (error) {
+            console.log(error)
+        } else {
+            console.log(newAuto)
+        }
+        res.redirect('/al')
+    })
 })
 
 router.get('/:id', (req, res) => {

@@ -2,7 +2,8 @@ let yearSelect = document.getElementById('year')
 let makeSelect = document.getElementById('make')
 let modelSelect = document.getElementById('model')
 let optionSelect = document.getElementById('option')
-let audoIDSelect = document.getElementById('autoID')
+let autoIDSelect = document.getElementById('autoID')
+let autoIDEscrow = []
 
 const clearMakeSelect = () => {
     while (makeSelect.firstChild) {
@@ -92,21 +93,16 @@ const generateOptionOptions = () => {
             option = document.createElement('OPTION')
             option.text = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
             option.value = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            autoIDEscrow.push([optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML, optionV.getElementsByTagName('menuItem')[i].getElementsByTagName('value').item(0).innerHTML])
             optionSelect.appendChild(option)
         }
     })
 }
 
 const setAutoID = () => {
-    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${yearSelect.value}&make=${makeSelect.value}&model=${modelSelect.value}`).then((res) => {
-        return res.text()
-    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((optionV) => {
-        clearOptionSelect()
-        for (let i = 0; i < optionV.getElementsByTagName('menuItem').length; i++) {
-            option = document.createElement('OPTION')
-            option.text = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-            option.value = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-            optionSelect.appendChild(option)
+    for(let i = 0; i < autoIDEscrow.length; i++) {
+        if(autoIDEscrow[i][0] === optionSelect.value) {
+            autoIDSelect.value = autoIDEscrow[i][1]
         }
-    })
+    }
 }
