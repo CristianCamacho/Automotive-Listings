@@ -1,8 +1,8 @@
-console.log('ye')
-
-let yearSelect = document.getElementById('years')
-let modelSelect = document.getElementById('models')
-let makeSelect = document.getElementById('makes')
+let yearSelect = document.getElementById('year')
+let makeSelect = document.getElementById('make')
+let modelSelect = document.getElementById('model')
+let optionSelect = document.getElementById('option')
+let audoIDSelect = document.getElementById('autoID')
 
 const clearMakeSelect = () => {
     while (makeSelect.firstChild) {
@@ -24,35 +24,43 @@ const clearModelSelect = () => {
     modelSelect.appendChild(option)
 }
 
+const clearOptionSelect = () => {
+    while (optionSelect.firstChild) {
+        optionSelect.removeChild(optionSelect.firstChild);
+    }
+    let option = document.createElement('OPTION')
+    option.text = 'Select Option'
+    option.value = 'none'
+    optionSelect.appendChild(option)
+}
+
 fetch('https://www.fueleconomy.gov/ws/rest/vehicle/menu/year').then((res) => {
     return res.text()
-}).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((years) => {
+}).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((year) => {
     clearMakeSelect()
     clearModelSelect()
+    clearOptionSelect()
     let option
-    
-    for (let i = 0; i < years.getElementsByTagName('menuItem').length; i++) {
+    for (let i = 0; i < year.getElementsByTagName('menuItem').length; i++) {
         option = document.createElement('OPTION')
-        option.text = years.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-        option.value = years.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-        console.log(option)
+        option.text = year.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+        option.value = year.getElementsByTagName('menuItem')[i].firstChild.innerHTML
         yearSelect.appendChild(option)
     }
 })
 
 const generateMakeOptions = () => {
     let option
-    console.log(document.getElementById('years').value)
-    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${document.getElementById('years').value}`).then((res) => {
+    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/make?year=${yearSelect.value}`).then((res) => {
         return res.text()
-    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((makes) => {
+    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((make) => {
         clearMakeSelect()
         clearModelSelect()
-        for (let i = 0; i < makes.getElementsByTagName('menuItem').length; i++) {
+        clearOptionSelect()
+        for (let i = 0; i < make.getElementsByTagName('menuItem').length; i++) {
             option = document.createElement('OPTION')
-            option.text = makes.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-            option.value = makes.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-            console.log(option)
+            option.text = make.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            option.value = make.getElementsByTagName('menuItem')[i].firstChild.innerHTML
             makeSelect.appendChild(option)
         }
     })
@@ -60,17 +68,45 @@ const generateMakeOptions = () => {
 
 const generateModelOptions = () => {
     let option
-    console.log(document.getElementById('years').value)
-    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${document.getElementById('years').value}&make=${document.getElementById('makes').value}`).then((res) => {
+    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/model?year=${yearSelect.value}&make=${makeSelect.value}`).then((res) => {
         return res.text()
-    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((models) => {
+    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((model) => {
         clearModelSelect()
-        for (let i = 0; i < models.getElementsByTagName('menuItem').length; i++) {
+        clearOptionSelect()
+        for (let i = 0; i < model.getElementsByTagName('menuItem').length; i++) {
             option = document.createElement('OPTION')
-            option.text = models.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-            option.value = models.getElementsByTagName('menuItem')[i].firstChild.innerHTML
-            console.log(option)
+            option.text = model.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            option.value = model.getElementsByTagName('menuItem')[i].firstChild.innerHTML
             modelSelect.appendChild(option)
+        }
+    })
+}
+
+const generateOptionOptions = () => {
+    let option
+    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${yearSelect.value}&make=${makeSelect.value}&model=${modelSelect.value}`).then((res) => {
+        return res.text()
+    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((optionV) => {
+        clearOptionSelect()
+        for (let i = 0; i < optionV.getElementsByTagName('menuItem').length; i++) {
+            option = document.createElement('OPTION')
+            option.text = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            option.value = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            optionSelect.appendChild(option)
+        }
+    })
+}
+
+const setAutoID = () => {
+    fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/menu/options?year=${yearSelect.value}&make=${makeSelect.value}&model=${modelSelect.value}`).then((res) => {
+        return res.text()
+    }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((optionV) => {
+        clearOptionSelect()
+        for (let i = 0; i < optionV.getElementsByTagName('menuItem').length; i++) {
+            option = document.createElement('OPTION')
+            option.text = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            option.value = optionV.getElementsByTagName('menuItem')[i].firstChild.innerHTML
+            optionSelect.appendChild(option)
         }
     })
 }

@@ -31,7 +31,6 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     min-width: 700px;
-    margin: 15px;
 }
 
 .listing {
@@ -60,10 +59,23 @@ body > div > div > div.listingInfo > p {
 
 .filter {
     width:600px;
-    margin: 15px;
     padding: 10px;
 }
 
 select {
     display: inline-block;
+}
+
+fieldset {
+    display: inline-block;
+    width: 300px;
+    margin: 10px;
+}
+
+#newForm {
+    display: flex;
+}
+
+#newFormDiv {
+    justify-content: center;
 }
