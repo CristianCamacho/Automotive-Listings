@@ -8,7 +8,7 @@ const autoSchema = new Schema({
     option: { type: String, reqired: true },
     autoID: { type: String, reqired: true },
     mileage: { type: Number, reqired: true },
-    img: { type: String, default: 'http://localhost:3000/public/images/car-310650_1280.png' },
+    img: { type: String, default: '../public/images/car-310650_1280.png' },
     price: { type: Number },
     trim: { type: String },
     body: { type: String },

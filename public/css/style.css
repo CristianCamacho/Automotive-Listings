@@ -78,3 +78,42 @@ fieldset {
 #newFormDiv {
     justify-content: center;
 }
+
+
+.showPage, .showPageINFO  {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px;
+}
+
+.showImage {
+    height: 400px;
+}
+
+.showImageDiv {
+    padding: 20px;
+}
+
+.basicDesc {
+
+}
+
+.showPageINFO {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 30px;
+}
+
+.infoDiv {
+    border-radius: 1px;
+    border-color: rgb(235, 99, 104);
+    border-style: solid;
+    margin: 10px;
+    padding: 10px;
+}
+
+.pTitle {
+    font-size: 20px;
+}

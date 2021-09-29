@@ -1,11 +1,32 @@
+<script src='../../public/js/show.js' defer EPAID='<%= auto.autoID %>'></script>
 <%- include('../views/partials/header.ejs') %> 
-
-<p><%= auto.year %></p>
-    <p><%= auto.make %></p>
-    <a href='../../al/show/<%= auto._id %>'><%= auto.model %></a>
-    <p><%= auto.mileage %></p>
+<div class='showPage'>
+    <div class='showImageDiv'>
+        <img class='showImage' src='<%= auto.img %>'>
+    </div>
+    <div id='basicDesc'>
+        <p><%= auto.year %> <%= auto.make %> <%= auto.model %> <%= auto.mileage %></p>
+        <p>EPA ID: <%= auto.autoID %></p>
+        
+    </div>
+</div>
+<div class='showPageINFO'>
+    <div class='infoDiv'>
+        <p class='pTitle'>Fuel</p>
+        <p id='city'>No info</p>
+        <p id='highway'>No info</p>
+        <p id='combined'>No info</p>
+        <p id='fuelType'>No info</p>
+    </div>
+    <div class='infoDiv'>
+        <p class='pTitle'>Drive-train</p>
+        <p id='cylinders'>No info</p>
+        <p id='displace'>No info</p>
+        <p id='gear'>No info</p>
+        <p id='drive'>No info</p>
+    </div>
+</div>
     <form action='../delete/<%= auto._id %>/?_method=DELETE' method='POST'>
         <button>Delete</button>
     </form>
-
 <%- include('../views/partials/footer.ejs') %> 
