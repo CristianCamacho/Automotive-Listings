@@ -35,12 +35,17 @@ const clearOptionSelect = () => {
     optionSelect.appendChild(option)
 }
 
-fetch('https://www.fueleconomy.gov/ws/rest/vehicle/menu/year').then((res) => {
-    return res.text()
-}).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((year) => {
+
+if (document.currentScript.getAttribute('pageType') == 'new') {
     clearMakeSelect()
     clearModelSelect()
     clearOptionSelect()
+}
+
+fetch('https://www.fueleconomy.gov/ws/rest/vehicle/menu/year').then((res) => {
+    return res.text()
+}).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((year) => {
+
     let option
     for (let i = 0; i < year.getElementsByTagName('menuItem').length; i++) {
         option = document.createElement('OPTION')
@@ -49,6 +54,8 @@ fetch('https://www.fueleconomy.gov/ws/rest/vehicle/menu/year').then((res) => {
         yearSelect.appendChild(option)
     }
 })
+
+
 
 const generateMakeOptions = () => {
     let option
@@ -100,8 +107,8 @@ const generateOptionOptions = () => {
 }
 
 const setAutoID = () => {
-    for(let i = 0; i < autoIDEscrow.length; i++) {
-        if(autoIDEscrow[i][0] === optionSelect.value) {
+    for (let i = 0; i < autoIDEscrow.length; i++) {
+        if (autoIDEscrow[i][0] === optionSelect.value) {
             autoIDSelect.value = autoIDEscrow[i][1]
         }
     }

@@ -64,7 +64,7 @@ router.get('/edit/:id', (req, res) => {
         } else {
             console.log(foundAuto)
             res.render('edit.ejs', {
-                listing: foundAuto
+                auto: foundAuto
             })
         }
     })

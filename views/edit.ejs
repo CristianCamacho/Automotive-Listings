@@ -1,29 +1,46 @@
+<script src='../../public/js/index.js' pageType='edit' defer></script>
 <%- include('../views/partials/header.ejs') %>
-<form action='/al/edit/<%= listing._id %>/?_method=PUT' method="POST">
-    <fieldset>
-        <label for='year'>Year</label>
-        <input type='text' id='year' name='year' value='<%= listing.year %>'>
-    </fieldset>
-    <fieldset>
-        <label for='make'>Make</label>
-        <input type='text' id='make' name='make' value='<%= listing.make %>'>
-    </fieldset>
-    <fieldset>
-        <label for='model'>Model</label>
-        <input type='text' id='model' name='model' value='<%= listing.model %>'>
-    </fieldset>
-    <fieldset>
-        <label for='mileage'>Mileage</label>
-        <input type='text' id='mileage' name='mileage' value='<%= listing.mileage %>'>
-    </fieldset>
-    <fieldset>
-        <label for='mileage'>Price</label>
-        <input type='text' id='price' name='price' value='<%= listing.price %>'>
-    </fieldset>
-    <fieldset>
-        <label for='img'>Image Link</label>
-        <input type='text' id='img' name='img' value='<%= listing.img %>'>
-    </fieldset>
-    <button>Submit</button>
-</form>
-<%- include('../views/partials/footer.ejs') %>
+    <div id='newForm'>
+        <form id='newFormDiv' action='/al/edit/<%= auto._id %>/?_method=PUT' method="POST">
+            <fieldset>
+                <label for='year'>Year</label>
+                <select id='year' name='year' onchange='generateMakeOptions()'>
+                    <option value='<%= auto.year %>'><%= auto.year %></option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for='make'>Make</label>
+                <select id='make' id='make' name='make' onchange='generateModelOptions()'>
+                    <option value='<%= auto.make %>'><%= auto.make %></option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for='model'>Model</label>
+                <select id='model' name='model' onchange='generateOptionOptions()'>
+                    <option value='<%= auto.model %>'><%= auto.model %></option>
+                </select>
+            </fieldset>
+            <fieldset>
+                <label for='option'>Option</label>
+                <select id='option' name='option' onchange='setAutoID()'><option value='<%= auto.option %>'><%= auto.option %></option>
+                </select>
+            <fieldset hidden>
+                <input type='text' id='autoID' name='autoID' value='<%= auto.autoID %>'>
+            </fieldset>
+            </fieldset>
+            <fieldset>
+                <label for='mileage'>Mileage</label>
+                <input type='text' id='mileage' name='mileage' value='<%= auto.mileage %>'>
+            </fieldset>
+            <fieldset>
+                <label for='mileage'>Price</label>
+                <input type='text' id='price' name='price' value='<%= auto.price %>'>
+            </fieldset>
+            <fieldset>
+                <label for='img'>Image Link</label>
+                <input type='text' id='img' name='img' value='<%= auto.img %>'>
+            </fieldset>
+            <button>Submit</button>
+        </form>
+    </div>
+    <%- include('../views/partials/footer.ejs') %>
