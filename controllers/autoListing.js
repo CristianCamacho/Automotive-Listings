@@ -4,12 +4,24 @@ const router = express.Router()
 const Auto = require('../models/auto')
 const seedAuto = require('../seed/seed')
 
+const authRequired = (req, res, next) => {
+    if (req.session.currentUser) {
+        console.log(req.session.currentUser)
+        next()
+    } else {
+        res.redirect('/al', {
+            altert: true,
+            alertMsg: 'Pleaase sign in.'
+        })
+    }
+}
+
 router.get('/', (req, res) => {
     Auto.find({}, (error, wholeListing) => {
+        console.log(req.session.currentUser)
         if (error) {
             console.log(error)
         } else {
-            console.log(wholeListing)
             res.render('index.ejs', {
                 listings: wholeListing
             })
@@ -19,7 +31,7 @@ router.get('/', (req, res) => {
 
 router.get('/seed', (req, res) => {
     Auto.create(seedAuto, (error, seeded) => {
-        if(error) {
+        if (error) {
             console.log(error)
         } else {
             console.log(seeded)
@@ -28,11 +40,11 @@ router.get('/seed', (req, res) => {
     })
 })
 
-router.get('/new', (req, res) => {
+router.get('/new',authRequired, (req, res) => {
     res.render('new.ejs')
 })
 
-router.post('/new', (req, res) => {
+router.post('/new', authRequired, (req, res) => {
     console.log(req.body)
     Auto.create(req.body, (error, newAuto) => {
         if (error) {
@@ -57,7 +69,7 @@ router.get('/:id', (req, res) => {
     })
 })
 
-router.get('/edit/:id', (req, res) => {
+router.get('/edit/:id', authRequired, (req, res) => {
     Auto.findById(req.params.id, (error, foundAuto) => {
         if (error) {
             console.log(error)
@@ -70,7 +82,7 @@ router.get('/edit/:id', (req, res) => {
     })
 })
 
-router.put('/edit/:id', (req, res) => {
+router.put('/edit/:id',authRequired, (req, res) => {
     Auto.findByIdAndUpdate(req.params.id, req.body, (error, updated) => {
         if (error) {
             console.log(error)
@@ -94,10 +106,10 @@ router.get('/show/:id', (req, res) => {
     })
 })
 
-router.delete('/delete/:id', (req,res) => {
+router.delete('/delete/:id', (req, res) => {
     Auto.findByIdAndDelete(req.params.id, (error, deleted) => {
-        if(error) {
-            console.log(error) 
+        if (error) {
+            console.log(error)
         } else {
             console.log(deleted)
         }
