@@ -1,0 +1,16 @@
+<%- include('../views/partials/header.ejs') %>
+    <h4>User registration</h4>
+    <div class='regDiv'>
+        <form action='/user/register' method='POST'>
+            <fieldset>
+                <label for='username'>Username</label>
+                <input type='text' id='username' name='username'>
+                <label for='password'>Password</label>
+                <input type='password' id='password' name='password'>
+                <label for='verifyPassword'>Verify Password</label>
+                <input type='password' id='verifyPassword' name='verifyPassword'>
+                <input type='submit' value='Create Account'>
+            </fieldset>
+        </form>
+    </div>
+<%- include('../views/partials/footer.ejs') %>
