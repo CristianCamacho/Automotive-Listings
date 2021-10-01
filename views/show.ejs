@@ -2,13 +2,13 @@
 <%- include('../views/partials/header.ejs') %> 
 <div class='showPage'>
     <div class='showImageDiv'>
-        <img class='showImage' src='<%= auto.img %>'>
+        <img class='showImage' src='<%= auto.img %>' onerror="this.onerror=null; this.src='../images/car-310650_1280.png'">
     </div>
     <div id='basicDesc'>
-        <p><%= auto.year %> <%= auto.make %> <%= auto.model %> <%= auto.mileage %></p>
+        <p><%= auto.year %> <%= auto.make %> <%= auto.model %> </p>
         <p>Price: $<%= auto.price %></p>
+        <p>Mileage: <%= auto.mileage %> mi.</p>
         <p>EPA ID: <%= auto.autoID %></p>
-        
     </div>
 </div>
 <div class='showPageINFO'>
@@ -25,6 +25,12 @@
         <p id='displace'>No info</p>
         <p id='gear'>No info</p>
         <p id='drive'>No info</p>
+    </div>
+    <div class='infoDiv'>
+        <p class='pTitle'>Contact</p>
+        <p>Poster: <%= auto.posterUserName %></p>
+        <p>Email: <%= auto.posterEmail %></p>
+        <p>Location: <%= auto.location %></p>
     </div>
 </div>
     <form action='../delete/<%= auto._id %>/?_method=DELETE' method='POST'>

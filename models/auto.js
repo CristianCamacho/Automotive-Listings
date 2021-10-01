@@ -9,7 +9,10 @@ const autoSchema = new Schema({
     autoID: { type: String, reqired: true },
     mileage: { type: Number, reqired: true },
     img: { type: String, default: '../public/images/car-310650_1280.png' },
-    price: { type: Number }
+    price: { type: Number },
+    posterUserName: { type: String, reqired: true },
+    posterEmail: { type: String, required: true },
+    location: { type: String, required: true }
 })
 
 const Auto = model('Auto', autoSchema)

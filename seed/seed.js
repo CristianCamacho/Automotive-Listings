@@ -8,6 +8,9 @@ const Autos = [
       mileage: 14000,
       img: '../../public/images/car-310650_1280.png',
       price: 24000,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
     },
     {
       year: 1989,
@@ -18,6 +21,9 @@ const Autos = [
       mileage: 190000,
       img: '../../public/images/car-310650_1280.png',
       price: 1800,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
     },
     {
       year: 2002,
@@ -28,6 +34,7 @@ const Autos = [
       mileage: 88000,
       img: '../../public/images/car-310650_1280.png',
       price: 4000,
+      posterUserName: 'admin'
     },
     {
       year: 2004,
@@ -38,6 +45,9 @@ const Autos = [
       mileage: 99000,
       img: '../../public/images/car-310650_1280.png',
       price: 10800,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
     },
     {
       year: 2002,
@@ -48,6 +58,9 @@ const Autos = [
       mileage: 230000,
       img: '../../public/images/car-310650_1280.png',
       price: 4200,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
     },
     {
       year: 2016,
@@ -58,6 +71,10 @@ const Autos = [
       mileage: 10000,
       img: '../../public/images/car-310650_1280.png',
       price: 56000,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
+      
     },
     {
       year: 1996,
@@ -68,6 +85,9 @@ const Autos = [
       mileage: 200000,
       img: '../../public/images/car-310650_1280.png',
       price: 8900,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
     },
     {
       year: 2017,
@@ -77,7 +97,10 @@ const Autos = [
       autoID: '37925',
       mileage: 54001,
       img: '../../public/images/car-310650_1280.png',
-      price: 28000
+      price: 28000,
+      posterUserName: 'admin',
+      location: 'Yonkers, New York',
+      posterEmail: 'email@gmail.com'
     }
   ]
 

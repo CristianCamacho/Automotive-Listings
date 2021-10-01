@@ -44,6 +44,12 @@ router.get('/new', authRequired, (req, res) => {
 })
 
 router.post('/new', authRequired, (req, res) => {
+    req.body.posterUserName = req.session.currentUser.username
+    req.body.location = req.session.currentUser.location
+    req.body.posterEmail = req.session.currentUser.email
+    if(req.body.img === '') {
+        req.body.img = undefined
+    }
     console.log(req.body)
     Auto.create(req.body, (error, newAuto) => {
         if (error) {
