@@ -5,7 +5,9 @@ const bcrypt = require('bcrypt')
 const User = require('../models/users')
 
 router.get('/register', (req, res) => {
-    res.render('registration.ejs')
+    res.render('registration.ejs', {
+        logged: req.session.currentUser
+    })
 })
 
 router.post('/register', (req, res) => {
@@ -26,7 +28,9 @@ router.post('/register', (req, res) => {
 })
 
 router.get('/signin', (req, res) => {
-    res.render('signin.ejs')
+    res.render('signin.ejs', {
+        logged: req.session.currentUser
+    })
 })
 
 router.post('/signin', (req, res) => {

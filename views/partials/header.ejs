@@ -15,9 +15,23 @@
         <h1>Auto-Listings</h1>
     </header>
     <nav>
-        <a href='/al'>Home</a> | 
-        <a href='/al/new'>New Listing</a> |
-        <a href='/user/signin'>Sign in</a> |
-        <a href='/user/signout'>Sign out</a> |
-        <a href='/user/register'>Register</a>
+        <a href='/al'>Home</a> |
+        
+        <% if(logged){ %>
+            <a href='/al/new'>New Listing</a> |
+        <% } %>
+       
+        <% if(!logged){ %>
+            <a href='/user/signin'>Sign in</a> |
+        <% } %>
+        
+        <% if(logged){ %>
+            <a href='/user/signout'>Sign out</a> 
+        <% } %>
+        
+        <% if(!logged){ %>
+            <a href='/user/register'>Register</a>
+        <% } %>
+
     </nav>
+    

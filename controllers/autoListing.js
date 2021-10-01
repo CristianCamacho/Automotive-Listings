@@ -6,24 +6,21 @@ const seedAuto = require('../seed/seed')
 
 const authRequired = (req, res, next) => {
     if (req.session.currentUser) {
-        console.log(req.session.currentUser)
         next()
     } else {
-        res.redirect('/al', {
-            altert: true,
-            alertMsg: 'Pleaase sign in.'
-        })
+        res.redirect(`/al`)
     }
 }
 
 router.get('/', (req, res) => {
     Auto.find({}, (error, wholeListing) => {
-        console.log(req.session.currentUser)
         if (error) {
             console.log(error)
         } else {
+            
             res.render('index.ejs', {
-                listings: wholeListing
+                listings: wholeListing,
+                logged: req.session.currentUser
             })
         }
     })
@@ -40,8 +37,10 @@ router.get('/seed', (req, res) => {
     })
 })
 
-router.get('/new',authRequired, (req, res) => {
-    res.render('new.ejs')
+router.get('/new', authRequired, (req, res) => {
+    res.render('new.ejs', {
+        logged: req.session.currentUser
+    })
 })
 
 router.post('/new', authRequired, (req, res) => {
@@ -56,19 +55,6 @@ router.post('/new', authRequired, (req, res) => {
     })
 })
 
-router.get('/:id', (req, res) => {
-    Auto.findById(req.params.id, (error, foundAuto) => {
-        if (error) {
-            console.log(error)
-        } else {
-            console.log(foundAuto)
-            res.render('show.ejs', {
-                auto: foundAuto
-            })
-        }
-    })
-})
-
 router.get('/edit/:id', authRequired, (req, res) => {
     Auto.findById(req.params.id, (error, foundAuto) => {
         if (error) {
@@ -76,13 +62,14 @@ router.get('/edit/:id', authRequired, (req, res) => {
         } else {
             console.log(foundAuto)
             res.render('edit.ejs', {
-                auto: foundAuto
+                auto: foundAuto,
+                logged: req.session.currentUser
             })
         }
     })
 })
 
-router.put('/edit/:id',authRequired, (req, res) => {
+router.put('/edit/:id', authRequired, (req, res) => {
     Auto.findByIdAndUpdate(req.params.id, req.body, (error, updated) => {
         if (error) {
             console.log(error)
@@ -100,7 +87,8 @@ router.get('/show/:id', (req, res) => {
         } else {
             console.log(foundAuto)
             res.render('show.ejs', {
-                auto: foundAuto
+                auto: foundAuto,
+                logged: req.session.currentUser
             })
         }
     })
