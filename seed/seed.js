@@ -34,7 +34,9 @@ const Autos = [
       mileage: 88000,
       img: '../../public/images/car-310650_1280.png',
       price: 4000,
-      posterUserName: 'admin'
+      posterUserName: 'admin',
+      posterEmail: 'email@gmail.com',
+      location: 'Yonkers, New York',
     },
     {
       year: 2004,

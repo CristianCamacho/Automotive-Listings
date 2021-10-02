@@ -2,13 +2,13 @@
 <%- include('../views/partials/header.ejs') %>
 <div class='listingsPage'>
     <div class='filter'>
-        <form action='al/filtered' method="GET">
-            <div class='price'>
+        <div class='price'>
+            <form id='filterForm' action='/al/filtered' method='POST'></form>
                 <fieldset>
                     <p>Price</p>
                     <label for='priceMin'>Minimum</label>
                     <input type='number' name='priceMin' id='priceMin' value='<%= priceMin %>'>
-                    <p>to</p> 
+                    <p>to</p>
                     <label for='priceMax'>Maximum</label>
                     <input type='number' name='priceMax' id='priceMax' value='<%= priceMax %>'>
                 </fieldset>
@@ -52,14 +52,15 @@
                         <% } %>
                     </select>
                 </fieldset>
-            </div>
-        </form>
+                <button id='formButton'>Submit</button>
+            </form>
+        </div>
     </div>
     <div class='listings'>
     <% for(let i = 0; i < listings.length; i++) { %>
     <div class='listing'>
         <div class='listingInfo'>
-            <p><%= listings[i].year %> <%= listings[i].make %> <%= listings[i].model %></p>
+            <p><span><%= listings[i].year %></span> <span><%= listings[i].make %></span> <span><%= listings[i].model %></span></p>
         </div>
         <a href='al/show/<%= listings[i]._id %>'>
             <div id='imageDiv'>

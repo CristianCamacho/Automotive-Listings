@@ -54,6 +54,11 @@ router.get('/', (req, res) => {
     })
 })
 
+router.post('/filtered', (req, res) => {
+    console.log(req.body)
+    res.redirect('/al')
+})
+
 router.get('/seed', (req, res) => {
     Auto.create(seedAuto, (error, seeded) => {
         if (error) {
@@ -84,7 +89,6 @@ router.post('/new', authRequired, (req, res) => {
     if (req.body.img === '') {
         req.body.img = undefined
     }
-    console.log(req.body)
     Auto.create(req.body, (error, newAuto) => {
         if (error) {
             console.log(error)
