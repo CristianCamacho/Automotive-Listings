@@ -14,13 +14,34 @@ const authRequired = (req, res, next) => {
 
 router.get('/', (req, res) => {
     Auto.find({}, (error, wholeListing) => {
+        let pMin = wholeListing[0].price
+        let pMax = wholeListing[0].price
+        for (let i = 1; i < wholeListing.length; i++) {
+            if(wholeListing[i].price > pMax){
+                pMax = wholeListing[i].price
+            } else if(wholeListing[i].price < pMin) {
+                pMin = wholeListing[i].price
+            }
+        }
+        let yMin = wholeListing[0].year
+        let yMax = wholeListing[0].year
+        for (let i = 1; i < wholeListing.length; i++) {
+            if(wholeListing[i].year > yMax){
+                yMax = wholeListing[i].year
+            } else if(wholeListing[i].year < yMin) {
+                yMin = wholeListing[i].year
+            }
+        }
         if (error) {
             console.log(error)
         } else {
-
             res.render('index.ejs', {
                 listings: wholeListing,
-                logged: req.session.currentUser
+                logged: req.session.currentUser,
+                priceMin: pMin,
+                priceMax: pMax,
+                yearMin: yMin,
+                yearMax: yMax
             })
         }
     })
@@ -39,7 +60,7 @@ router.get('/seed', (req, res) => {
 
 router.get('/new', authRequired, (req, res) => {
     let logged
-    if(req.session.currentUser){
+    if (req.session.currentUser) {
         logged = true
     } else {
         logged = false
@@ -73,7 +94,7 @@ router.get('/edit/:id', authRequired, (req, res) => {
         if (error) {
             console.log(error)
         } else {
-            if(req.session.currentUser){
+            if (req.session.currentUser) {
                 logged = true
             } else {
                 logged = false
@@ -107,7 +128,7 @@ router.get('/show/:id', (req, res) => {
         if (error) {
             console.log(error)
         } else {
-            if(req.session.currentUser){
+            if (req.session.currentUser) {
                 logged = true
             } else {
                 logged = false

@@ -16,9 +16,7 @@
     </header>
     <nav>
         <a href='/al'>Home</a> |
-        
         <% if(logged){ %>
-            <% console.log(logged) %>
             <a href='/al/new'>New Listing</a> |
         <% } %>
        
@@ -33,6 +31,5 @@
         <% if(!logged){ %>
             <a href='/user/register'>Register</a>
         <% } %>
-
     </nav>
     

@@ -1,18 +1,57 @@
-
+<script src='../public/js/index.js' defer></script>
 <%- include('../views/partials/header.ejs') %>
 <div class='listingsPage'>
     <div class='filter'>
-        <form action='al' method="GET">
+        <form action='al/filtered' method="GET">
             <div class='price'>
                 <fieldset>
                     <p>Price</p>
                     <label for='priceMin'>Minimum</label>
-                    <input type='number' name='priceMin' id='priceMin' value='0'>
+                    <input type='number' name='priceMin' id='priceMin' value='<%= priceMin %>'>
                     <p>to</p> 
-                    <label for='priceMin'>Maximum</label>
-                    <input type='number' name='priceMax' id='priceMax' value='0'>
+                    <label for='priceMax'>Maximum</label>
+                    <input type='number' name='priceMax' id='priceMax' value='<%= priceMax %>'>
                 </fieldset>
-                <button>Apply Filter</button>
+                <fieldset>
+                    <p>Year</p>
+                    <label for='yearMin'>Minimum</label>
+                    <input type='number' name='yearMin' id='yearMin' value='<%= yearMin %>'>
+                    <p>to</p> 
+                    <label for='yearMax'>Maximum</label>
+                    <input type='number' name='yearMax' id='yearMax' value='<%= yearMax %>'>
+                </fieldset>
+                <fieldset>
+                    <p>Mileage</p>
+                    <label for='mileMin'>Minimum</label>
+                    <input type='number' name='mileMin' id='mileMin' value='<%= mileMin %>'>
+                    <p>to</p> 
+                    <label for='mileMax'>Maximum</label>
+                    <input type='number' name='mileMax' id='mileMax' value='<%= mileMax %>'>
+                </fieldset>
+                <fieldset>
+                    <label for='make'>Select Make</label>
+                    <select name='make' id='make' onchange="setModels()">
+                        <option value='none'>Make</option>
+                        <% let calledMakes = [] %>
+                        <% for(let i = 0; i < listings.length; i++) { %>
+                            <% if(calledMakes.indexOf(listings[i].make) < 0) { %>
+                                <% calledMakes.push(listings[i].make) %>
+                                <option value='<%= listings[i].make %>'><%= listings[i].make %></option>
+                            <% } %>
+                        <% } %>
+                    </select>
+                    <label for='model'>Select Model</label>
+                    <select name='model' id='model'>
+                        <option value='none'>Select Model</option>
+                        <% let calledModels = [] %>
+                        <% for(let i = 0; i < listings.length; i++) { %>
+                            <% if(calledModels.indexOf(listings[i].model) < 0) { %>
+                                <% calledModels.push(listings[i].model) %>
+                                <option make='<%= listings[i].make %>' value='<%= listings[i].model %>' hidden><%= listings[i].model %></option>
+                            <% } %>
+                        <% } %>
+                    </select>
+                </fieldset>
             </div>
         </form>
     </div>
@@ -24,7 +63,7 @@
         </div>
         <a href='al/show/<%= listings[i]._id %>'>
             <div id='imageDiv'>
-                <img class='listingsImage' src='<%= listings[i].img %>' onerror="this.onerror=null; this.src='../images/car-310650_1280.png'">
+                <img class='listingsImage' src='<%= listings[i].img %>' onerror="this.onerror=null; this.src='../../public/images/car-310650_1280.png'">
             </div>
         </a>
         <div class='listingInfo'>

@@ -69,7 +69,7 @@ const Autos = [
       option: 'Man 6-spd, 8 cyl, 5.2 L',
       autoID: '36885',
       mileage: 10000,
-      img: '../../public/images/car-310650_1280.png',
+      img: 'https://fordauthority.com/wp-content/uploads/2019/01/2015-Shelby-GT350R-002-1024x683.jpg',
       price: 56000,
       posterUserName: 'admin',
       location: 'Yonkers, New York',
