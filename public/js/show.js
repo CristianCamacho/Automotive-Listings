@@ -3,8 +3,6 @@
 fetch(`https://www.fueleconomy.gov/ws/rest/vehicle/${document.currentScript.getAttribute('EPAID')}`).then((res) => {
     return res.text()
 }).then(str => (new window.DOMParser()).parseFromString(str, "text/xml")).then((data) => {
-    console.log(data.getElementsByTagName('vehicle')[0])
-    
     document.getElementById('city').innerHTML = 'City MPG: ' + data.getElementsByTagName('vehicle')[0].getElementsByTagName('city08')[0].innerHTML
 
     document.getElementById('highway').innerHTML = 'Highway MPG: ' + data.getElementsByTagName('vehicle')[0].getElementsByTagName('highway08')[0].innerHTML

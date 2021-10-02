@@ -16,20 +16,25 @@ router.get('/', (req, res) => {
     Auto.find({}, (error, wholeListing) => {
         let pMin = wholeListing[0].price
         let pMax = wholeListing[0].price
+        let yMin = wholeListing[0].year
+        let yMax = wholeListing[0].year
+        let mMin = wholeListing[0].mileage
+        let mMax = wholeListing[0].mileage
         for (let i = 1; i < wholeListing.length; i++) {
             if(wholeListing[i].price > pMax){
                 pMax = wholeListing[i].price
             } else if(wholeListing[i].price < pMin) {
                 pMin = wholeListing[i].price
             }
-        }
-        let yMin = wholeListing[0].year
-        let yMax = wholeListing[0].year
-        for (let i = 1; i < wholeListing.length; i++) {
             if(wholeListing[i].year > yMax){
                 yMax = wholeListing[i].year
             } else if(wholeListing[i].year < yMin) {
                 yMin = wholeListing[i].year
+            }
+            if(wholeListing[i].mileage > mMax){
+                mMax = wholeListing[i].mileage
+            } else if(wholeListing[i].mileage < mMin) {
+                mMin = wholeListing[i].mileage
             }
         }
         if (error) {
@@ -41,7 +46,9 @@ router.get('/', (req, res) => {
                 priceMin: pMin,
                 priceMax: pMax,
                 yearMin: yMin,
-                yearMax: yMax
+                yearMax: yMax,
+                mileMin: mMin,
+                mileMax: mMax
             })
         }
     })
@@ -124,18 +131,22 @@ router.put('/edit/:id', authRequired, (req, res) => {
 
 router.get('/show/:id', (req, res) => {
     let logged
+    let username
     Auto.findById(req.params.id, (error, foundAuto) => {
         if (error) {
             console.log(error)
         } else {
             if (req.session.currentUser) {
                 logged = true
+                username = req.session.currentUser.username
             } else {
                 logged = false
+                username = ''
             }
             res.render('show.ejs', {
                 auto: foundAuto,
-                logged: logged
+                logged: logged,
+                username: username
             })
         }
     })

@@ -101,6 +101,97 @@ const Autos = [
       posterUserName: 'admin',
       location: 'Yonkers, New York',
       posterEmail: 'email@gmail.com'
+    },
+    {
+      year: 2011,
+      make: 'BMW',
+      model: '135i',
+      option: 'Man 6-spd, 6 cyl, 3.0 L, Turbo',
+      autoID: '30011',
+      mileage: 333991,
+      img: '../public/images/car-310650_1280.png',
+      price: 12000,
+      posterUserName: 'admin',
+      posterEmail: 'email@gmail.com',
+      location: 'Rye, New York'
+    },
+    {
+      year: 2009,
+      make: 'BMW',
+      model: '335i',
+      option: 'Auto (S6), 6 cyl, 3.0 L, Turbo',
+      autoID: '25903',
+      mileage: 99000,
+      img: '../public/images/car-310650_1280.png',
+      price: 8990,
+      posterUserName: 'username',
+      posterEmail: 'crismacho1995@gmail.com',
+      location: 'Rye, New York'
+    },
+    {
+      year: 1990,
+      make: 'BMW',
+      model: 'M3',
+      option: 'Man 5-spd, 4 cyl, 2.3 L',
+      autoID: '6451',
+      mileage: 10,
+      img: '../public/images/car-310650_1280.png',
+      price: 100000,
+      posterUserName: 'c',
+      posterEmail: 'cristian_camacho@aol.com',
+      location: 'Rye, New York'
+    },
+    {
+      year: 2004,
+      make: 'Ford',
+      model: 'Mustang',
+      option: 'Man 5-spd, 8 cyl, 4.6 L, 4 VALVE',
+      autoID: '19474',
+      mileage: 24000,
+      img: '../public/images/car-310650_1280.png',
+      price: 39000,
+      posterUserName: 'c',
+      posterEmail: 'cristian_camacho@aol.com',
+      location: 'Rye, New York'
+    },
+    {
+      year: 2020,
+      make: 'Dodge',
+      model: 'Charger SRT Widebody',
+      option: 'Auto 8-spd, 8 cyl, 6.2 L, Sup Charg',
+      autoID: '42331',
+      mileage: 0,
+      img: '../public/images/car-310650_1280.png',
+      price: 89000,
+      posterUserName: 'CarSeller',
+      posterEmail: 'seller@seller.com',
+      location: 'Somewhere, Else'
+    },
+    {
+      year: 1990,
+      make: 'BMW',
+      model: 'M3',
+      option: 'Man 5-spd, 4 cyl, 2.3 L',
+      autoID: '6451',
+      mileage: 10,
+      img: '../public/images/car-310650_1280.png',
+      price: 100000,
+      posterUserName: 'c',
+      posterEmail: 'cristian_camacho@aol.com',
+      location: 'Rye, New York'
+    },
+    {
+      year: 2004,
+      make: 'Lamborghini',
+      model: 'L-140/141 Gallardo',
+      option: 'Man 6-spd, 10 cyl, 5.0 L',
+      autoID: '19359',
+      mileage: 3224,
+      img: '../public/images/car-310650_1280.png',
+      price: 1,
+      posterUserName: 'username',
+      posterEmail: 'crismacho1995@gmail.com',
+      location: 'Rye, New York'
     }
   ]
 
