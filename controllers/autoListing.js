@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
         if (error) {
             console.log(error)
         } else {
-            
+
             res.render('index.ejs', {
                 listings: wholeListing,
                 logged: req.session.currentUser
@@ -38,8 +38,14 @@ router.get('/seed', (req, res) => {
 })
 
 router.get('/new', authRequired, (req, res) => {
+    let logged
+    if(req.session.currentUser){
+        logged = true
+    } else {
+        logged = false
+    }
     res.render('new.ejs', {
-        logged: req.session.currentUser
+        logged: logged
     })
 })
 
@@ -47,7 +53,7 @@ router.post('/new', authRequired, (req, res) => {
     req.body.posterUserName = req.session.currentUser.username
     req.body.location = req.session.currentUser.location
     req.body.posterEmail = req.session.currentUser.email
-    if(req.body.img === '') {
+    if (req.body.img === '') {
         req.body.img = undefined
     }
     console.log(req.body)
@@ -62,50 +68,68 @@ router.post('/new', authRequired, (req, res) => {
 })
 
 router.get('/edit/:id', authRequired, (req, res) => {
+    let logged
     Auto.findById(req.params.id, (error, foundAuto) => {
         if (error) {
             console.log(error)
         } else {
-            console.log(foundAuto)
+            if(req.session.currentUser){
+                logged = true
+            } else {
+                logged = false
+            }
             res.render('edit.ejs', {
                 auto: foundAuto,
-                logged: req.session.currentUser
+                logged: logged
             })
         }
     })
 })
 
 router.put('/edit/:id', authRequired, (req, res) => {
-    Auto.findByIdAndUpdate(req.params.id, req.body, (error, updated) => {
-        if (error) {
-            console.log(error)
-        } else {
-            console.log(updated)
+    Auto.findById(req.params.id, (error, found) => {
+        if (found.posterUserName === req.session.currentUser.username) {
+            Auto.findByIdAndUpdate(req.params.id, req.body, (error, updated) => {
+                if (error) {
+                    console.log(error)
+                } else {
+                    console.log(updated)
+                }
+                res.redirect('/al')
+            })
         }
-        res.redirect('/al')
     })
 })
 
 router.get('/show/:id', (req, res) => {
+    let logged
     Auto.findById(req.params.id, (error, foundAuto) => {
         if (error) {
             console.log(error)
         } else {
-            console.log(foundAuto)
+            if(req.session.currentUser){
+                logged = true
+            } else {
+                logged = false
+            }
             res.render('show.ejs', {
                 auto: foundAuto,
-                logged: req.session.currentUser
+                logged: logged
             })
         }
     })
 })
 
 router.delete('/delete/:id', (req, res) => {
-    Auto.findByIdAndDelete(req.params.id, (error, deleted) => {
-        if (error) {
-            console.log(error)
-        } else {
-            console.log(deleted)
+    Auto.findById(req.params.id, (error, found) => {
+        if (found.posterUserName === req.session.currentUser.username) {
+            Auto.findByIdAndDelete(req.params.id, (error, deleted) => {
+                if (error) {
+                    console.log(error)
+                } else {
+                    console.log(deleted)
+                }
+            })
         }
     })
     res.redirect('/al')

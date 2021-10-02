@@ -35,10 +35,12 @@ router.get('/signin', (req, res) => {
 
 router.post('/signin', (req, res) => {
     User.findOne({ username: req.body.username }, (error, foundUser) => {
-        const validLogin = bcrypt.compareSync(req.body.password, foundUser.password)
-        if(validLogin) {
-            req.session.currentUser = foundUser
-            res.redirect('/al')
+        if (foundUser) {
+            const validLogin = bcrypt.compareSync(req.body.password, foundUser.password)
+            if (validLogin) {
+                req.session.currentUser = foundUser
+                res.redirect('/al')
+            }
         } else {
             res.redirect('/user/signin')
         }
@@ -47,8 +49,8 @@ router.post('/signin', (req, res) => {
 
 router.get('/signout', (req, res) => {
     console.log(req.session.currentUser)
-    req.session.destroy( (error) => {
-        if(error) {
+    req.session.destroy((error) => {
+        if (error) {
             console.log(error)
             res.redirect('al')
         }

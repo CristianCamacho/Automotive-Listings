@@ -31,9 +31,21 @@
         <p>Poster: <%= auto.posterUserName %></p>
         <p>Email: <%= auto.posterEmail %></p>
         <p>Location: <%= auto.location %></p>
+        <% if(logged) { %>
+            <% if( auto.posterUserName === logged.username ) { %>
+                <form action='../delete/<%= auto._id %>/?_method=DELETE' method='POST'>
+                    <button>Delete</button>
+                </form>
+            <% } %>
+        <% } %>
+        <% if(logged) { %>
+            <% if( auto.posterUserName === logged.username ) { %>
+                <form action='../edit/<%= auto._id %>'>
+                    <button>Edit</button>
+                </form>
+            <% } %>
+        <% } %>
     </div>
 </div>
-    <form action='../delete/<%= auto._id %>/?_method=DELETE' method='POST'>
-        <button>Delete</button>
-    </form>
+    
 <%- include('../views/partials/footer.ejs') %> 
